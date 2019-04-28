@@ -474,12 +474,14 @@ Example:
     "user": {
         "name":   "Alysson Cirilo",
         "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roleID": 1248
+        "roles": [
+            1248
+        ]
    }
 }
 ```
 
-Where `roleID` is the ID of a Role.
+Where `roles` is an array of ID of Roles.
 
 ##### Output Parameters:
 | Name      | Value              |
@@ -494,7 +496,9 @@ Where `roleID` is the ID of a Role.
         "id":     15,
         "name":   "Alysson Cirilo",
         "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roleID": 1248
+        "roles": [
+            1248
+        ]
     }
 }
 ```
@@ -522,12 +526,14 @@ Example:
     "user": {
         "name":   "Alysson Cirilo",
         "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roleID": 2359
+        "roles": [
+            2359
+        ]
    }
 }
 ```
 
-Where `roleID` is the ID of a Role.
+Where `roles` is an array of ID of Roles.
 
 ##### Output Parameters:
 | Name      | Value              |
@@ -542,7 +548,9 @@ Where `roleID` is the ID of a Role.
         "id":     15,
         "name":   "Alysson Cirilo",
         "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roleID": 2359
+        "roles": [
+            2359
+        ]
     }
 }
 ```
@@ -577,7 +585,9 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
         "id":     15,
         "name":   "Alysson Cirilo",
         "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roleID": 2359
+        "roles": [
+            2359
+        ]
     }
 }
 ```
@@ -612,7 +622,9 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
         "id":     15,
         "name":   "Alysson Cirilo",
         "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roleID": 2359
+        "roles": [
+            2359
+        ]
     }
 }
 ```
@@ -647,13 +659,17 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
             "id":     15,
             "name":   "Alysson Cirilo",
             "email":  "alysson.cirilo@lsdi.ufma.br",
-            "roleID": 2359
+            "roles": [
+                2359
+            ]
         },
         {
             "id":     14,
             "name":   "Rodolfo Alves",
             "email":  "rodolfosalves@lsdi.ufma.br",
-            "roleID": 2359
+            "roles": [
+                2359
+            ]
         }
     ]
 }
