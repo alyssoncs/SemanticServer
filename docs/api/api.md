@@ -660,11 +660,11 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ```
 
 ### **GET**  `/users/{id}/things`
-#### Retrieve an existing user
-This operation retrieves an existing user with id equals `{id}`, from the Semantic Server.
+#### Retrieve the things that belong to an existing user
+This operation retrieves the things that belong to an existing user with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/users/{id}/things`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -696,11 +696,11 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ```
 
 ### **GET**  `/users/{id}/mhubs`
-#### Retrieve an existing user
-This operation retrieves an existing user with id equals `{id}`, from the Semantic Server.
+#### Retrieve the mhubs that belong to an existing user
+This operation retrieves the mhubs that belong to an existing user with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/users/{id}/things`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -1121,6 +1121,91 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
     ]
 }
 ```
+
+### **GET**  `/rooms/{id}/things`
+#### Retrieve the things belonging to an existing room
+This operation retrieves the things that belong to an existing user with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users/{id}/things`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | user JSON |
+|{id}  | The id of the room|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | array of things retrieved    |
+
+
+```json
+{
+    "things": [
+        {
+            "id":          15,
+            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
+            "description": "LSDi bluetooth beacon",
+            "holderID":    2359
+        },
+        {
+            "id":          14,
+            "UUID":        "8d53edbe-2feb-4e63-a1d5-64334587a2df",
+            "description": "LSDi bluetooth beacon 2",
+            "holderID":    2363
+        },
+    ]
+}
+```
+
+
+### **GET**  `/rooms/{id}/mhubs`
+#### Retrieve the mhubs that belong to an existing user
+This operation retrieves the mhubs that belong to an existing user with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users/{id}/mhubs`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | user JSON |
+|{id}  | The id of the room|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | array of mhubs retrieved    |
+
+```json
+{
+    "mhubs": [
+        {
+            "id":          15,
+            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
+            "description": "LSDi moto G",
+            "holderID":    2359
+        },
+        {
+            "id":          14,
+            "UUID":        "8d53edbe-2feb-4e63-a1d5-64334587a2de",
+            "description": "LSDi moto G2",
+            "holderID":    2363
+        },
+    ]
+}
+```
+
 
 ## Sections
 
