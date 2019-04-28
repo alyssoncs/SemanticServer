@@ -725,7 +725,7 @@ Example:
 ```json
 {
     "role": {
-        "name": "PHd Student"
+        "name": "PhD Student"
    }
 }
 ```
@@ -742,7 +742,7 @@ Example:
 {
     "role": {
         "id":   3,
-        "name": "PHd Student"
+        "name": "PhD Student"
    }
 }
 ```
@@ -775,7 +775,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 {
     "role": {
         "id":  3,
-        "name": "PHd Student"
+        "name": "PhD Student"
    }
 }
 ```
@@ -808,7 +808,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 {
     "role": {
         "id":  3,
-        "name": "PHd Student"
+        "name": "PhD Student"
    }
 }
 ```
@@ -841,7 +841,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
     "roles": [
         {
             "id":  3,
-            "name": "PHd Student"
+            "name": "PhD Student"
         },
         {
             "id":  2,
