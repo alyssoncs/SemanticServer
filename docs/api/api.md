@@ -660,3 +660,194 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 }
 ```
 
+## Roles
+
+### **POST**  `/roles`
+#### Register a new role
+This operation inserts a new role, expressed in the JSON format, into the Semantic Server.
+**Note that all role fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/roles`**
+ * HTTP Method: **POST**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | role JSON |
+
+Example:
+
+```json
+{
+    "role": {
+        "name":   "PHD Student",
+   }
+}
+```
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 201 (CREATED)      |
+| Payload   | role created       |
+
+
+```json
+{
+    "role": {
+        "id":   3,
+        "name": "PHD Student"
+   }
+}
+```
+
+### **PUT**  `/roles/{id}`
+#### Update an existing role
+This operation update an existing role with id equals `{id}`. The new values should be expressed in the JSON format.
+**Note that all role fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/roles/{id}`**
+ * HTTP Method: **PUT**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | role JSON |
+|{id}  | The id of the role|
+
+Example:
+
+```json
+{
+    "role": {
+        "name": "PHd Student"
+   }
+}
+```
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | role created      |
+
+
+```json
+{
+    "role": {
+        "id":   3,
+        "name": "PHd Student"
+   }
+}
+```
+
+### **DELETE**  `/roles/{id}`
+#### Delete an existing role
+This operation deletes an existing role with id equals `{id}` from the Semantic Server.
+**Note that all role fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/roles/{id}`**
+ * HTTP Method: **DELETE**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | Empty           |
+|{id}  | The id of the role|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | role deleted      |
+
+
+```json
+{
+    "role": {
+        "id":  3,
+        "name": "PHd Student"
+   }
+}
+```
+
+
+### **GET**  `/roles/{id}`
+#### Retrieve an existing role
+This operation update an existing role with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/roles/{id}`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | role JSON |
+|{id}  | The id of the role|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | role retrieved    |
+
+
+```json
+{
+    "role": {
+        "id":  3,
+        "name": "PHd Student"
+   }
+}
+```
+
+
+### **GET**  `/roles`
+#### Retrieve all the roles
+This operation retrieves all the existing roles from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/roles`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+|  | |
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | Array of the roles retrieved |
+
+
+```json
+{
+    "roles": [
+        {
+            "id":  3,
+            "name": "PHd Student"
+        },
+        {
+            "id":  2,
+            "name": "Professor"
+        }
+    ]
+}
+```
+
