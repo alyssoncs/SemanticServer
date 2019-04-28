@@ -1,0 +1,60 @@
+title {label: "Semantic Server Database", size: "30"}
+entity {bgcolor: "#ececfc"}
+
+[SS01_DEVICE] {bgcolor: "#fbfbdb"}
+        *SS01_DEVICE_ID {label: "bigint <pk>"}
+        +FKSS01SS10_HOLDER_ID {label: "bigint <fk>"}
+        SS01_UUID {label: "char(36)"}
+        SS01_DESCRIPTION {label: "varchar(255)"}
+
+[SS02_THING]
+        *+FKSS02SS01_DEVICE_ID {label: "bigint <pk> <fk>"}
+
+[SS03_MHUB]
+        *+FKSS03SS01_DEVICE_ID {label: "bigint <pk> <fk>"}
+
+[SS04_USER]
+        *+FKSS04SS10_HOLDER_ID {label: "bigint <pk> <fk>"}
+        SS04_NAME {label: "varchar(255)"}
+        SS04_EMAIL {label: "varchar(255) UNIQUE"}
+
+[SS05_ROLE]
+        *SS05_ROLE_ID {label: "bigint <pk>"}
+        SS05_ROLE_NAME {label: "varchar(255) UNIQUE"}
+
+[SS06_USER_ROLE] {bgcolor: "#fcecec"}
+        *+FKSS06SS04_HOLDER_ID {label: "bigint <pk> <fk>"}
+        *+FKSS06SS05_ROLE_ID {label: "bigint <pk> <fk>"}
+
+[SS07_ROOM]
+        *+FKSS07SS10_HOLDER_ID {label: "bigint <pk> <fk>"}
+        +FKSS07SS08_SECTION_ID {label: "bigint <fk>"}
+        SS07_NAME {label: "varchar(255)"}
+
+[SS08_SECTION]
+        *SS08_SECTION_ID {label: "bigint <pk>"}
+        +FKSS08SS09_BUILDING_ID {label: "bigint <fk>"}
+        SS08_NAME {label: "varchar(255)"}
+
+[SS09_BUILDING]
+        *SS09_BUILDING_ID {label: "bigint <pk>"}
+        SS09_NAME {label: "varchar(255)"}
+
+[SS10_HOLDER] {bgcolor: "#fbfbdb"}
+        *SS10_HOLDER_ID {label: "bigint <pk>"}
+
+
+SS01_DEVICE 1--? SS02_THING {label: "is"}
+SS01_DEVICE 1--? SS03_MHUB {label: "is"}
+SS01_DEVICE *--? SS10_HOLDER {label: "belongs to"}
+
+SS10_HOLDER 1--? SS04_USER {label: "is"}
+SS10_HOLDER 1--? SS07_ROOM {label: "is"}
+
+SS07_ROOM *--1 SS08_SECTION {label: "belongs to"}
+
+SS08_SECTION *--1 SS09_BUILDING {label: "belongs to"}
+
+SS06_USER_ROLE *--1 SS04_USER
+SS06_USER_ROLE *--1 SS05_ROLE
+
