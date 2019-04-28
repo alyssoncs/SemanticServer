@@ -10,8 +10,8 @@ There are seven resources that the Semantic Server keeps, they are:
 * [Users](#Users)
 * [Roles](#Roles)
 * [Rooms](#Rooms)
-* Sections
-* Buildings
+* [Sections](#Sections)
+* [Buildings](#Buildings)
 
 Rooms belog to Sections that belongs to Buildings. Mhubs and Things belogs to either Users or Rooms. and Users might have Roles.
 
@@ -1046,6 +1046,399 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
             "id":        19,
             "name":      "Server Room",
             "sectionID": 2
+        }
+    ]
+}
+```
+
+## Sections
+
+### **POST**  `/sections`
+#### Register a new section
+This operation inserts a new section, expressed in the JSON format, into the Semantic Server.
+**Note that all section fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/sections`**
+ * HTTP Method: **POST**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | section JSON |
+
+Example:
+
+```json
+{
+    "section": {
+        "name":      "LSD",
+        "buildingID": 4
+   }
+}
+```
+
+Where `buildingID` is an id of an existing Building.
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 201 (CREATED)      |
+| Payload   | section created       |
+
+
+```json
+{
+    "section": {
+        "id":         2,
+        "name":       "LSD",
+        "buildingID": 4
+   }
+}
+```
+
+
+### **PUT**  `/sections/{id}`
+#### Update an existing section
+This operation update an existing section with id equals `{id}`. The new values should be expressed in the JSON format.
+**Note that all section fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/sections/{id}`**
+ * HTTP Method: **PUT**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | section JSON |
+|{id}  | The id of the section|
+
+Example:
+
+```json
+{
+    "section": {
+        "name":       "LSDi",
+        "buildingID": 4
+   }
+}
+```
+
+Where `buildingID` is an id of an existing Building.
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | section updated      |
+
+```json
+{
+    "section": {
+        "id":         2,
+        "name":       "LSDi",
+        "buildingID": 4
+   }
+}
+```
+
+
+### **DELETE**  `/sections/{id}`
+#### Delete an existing section
+This operation deletes an existing section with id equals `{id}` from the Semantic Server.
+**Note that all section fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/sections/{id}`**
+ * HTTP Method: **DELETE**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | Empty           |
+|{id}  | The id of the section|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | section deleted      |
+
+
+```json
+{
+    "section": {
+        "id":         2,
+        "name":       "LSDi",
+        "buildingID": 4
+   }
+}
+```
+
+
+### **GET**  `/sections/{id}`
+#### Retrieve an existing section
+This operation update an existing section with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/sections/{id}`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | section JSON |
+|{id}  | The id of the section|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | section retrieved    |
+
+
+```json
+{
+    "section": {
+        "id":         2,
+        "name":       "LSDi",
+        "buildingID": 4
+   }
+}
+```
+
+
+### **GET**  `/sections`
+#### Retrieve all the sections
+This operation retrieves all the existing sections from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/sections`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+|  | |
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | Array of the sections retrieved |
+
+
+```json
+{
+    "sections": [
+        {
+            "id":         2,
+            "name":       "LSDi",
+            "buildingID": 4
+        },
+        {
+            "id":         3,
+            "name":       "LAWS",
+            "buildingID": 4
+        }
+    ]
+}
+```
+
+## Buildings
+
+### **POST**  `/buidings`
+#### Register a new buiding
+This operation inserts a new buiding, expressed in the JSON format, into the Semantic Server.
+**Note that all buiding fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/buidings`**
+ * HTTP Method: **POST**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | buiding JSON |
+
+Example:
+
+```json
+{
+    "buiding": {
+        "name":   "CCET Graduation building"
+   }
+}
+```
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 201 (CREATED)      |
+| Payload   | buiding created       |
+
+
+```json
+{
+    "buiding": {
+        "id":   4,
+        "name": "CCET Graduation building"
+   }
+}
+```
+
+### **PUT**  `/buidings/{id}`
+#### Update an existing buiding
+This operation update an existing buiding with id equals `{id}`. The new values should be expressed in the JSON format.
+**Note that all buiding fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/buidings/{id}`**
+ * HTTP Method: **PUT**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | buiding JSON |
+|{id}  | The id of the buiding|
+
+Example:
+
+```json
+{
+    "buiding": {
+        "name": "CCET Graduation Building"
+   }
+}
+```
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | buiding updated      |
+
+
+```json
+{
+    "buiding": {
+        "id":   4,
+        "name": "CCET Graduation Building"
+   }
+}
+```
+
+### **DELETE**  `/buidings/{id}`
+#### Delete an existing buiding
+This operation deletes an existing buiding with id equals `{id}` from the Semantic Server.
+**Note that all buiding fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/buidings/{id}`**
+ * HTTP Method: **DELETE**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | Empty           |
+|{id}  | The id of the buiding|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | buiding deleted      |
+
+
+```json
+{
+    "buiding": {
+        "id":   4,
+        "name": "CCET Graduation Building"
+   }
+}
+```
+
+
+### **GET**  `/buidings/{id}`
+#### Retrieve an existing buiding
+This operation update an existing buiding with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/buidings/{id}`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | buiding JSON |
+|{id}  | The id of the buiding|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | buiding retrieved    |
+
+
+```json
+{
+    "buiding": {
+        "id":   4,
+        "name": "CCET Graduation Building"
+   }
+}
+```
+
+
+### **GET**  `/buidings`
+#### Retrieve all the buidings
+This operation retrieves all the existing buidings from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/buidings`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+|  | |
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | Array of the buidings retrieved |
+
+
+```json
+{
+    "buidings": [
+        {
+            "id":   4,
+            "name": "CCET Graduation Building"
+        },
+        {
+            "id":   5,
+            "name": "CCET"
         }
     ]
 }
