@@ -1127,7 +1127,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 This operation retrieves the things that belong to an existing user with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}/things`**
+ * Full URL: `http://localhost:8080/api` **`/rooms/{id}/things`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -1166,11 +1166,11 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 
 ### **GET**  `/rooms/{id}/mhubs`
-#### Retrieve the mhubs that belong to an existing user
-This operation retrieves the mhubs that belong to an existing user with id equals `{id}`, from the Semantic Server.
+#### Retrieve the mhubs that belong to an existing room
+This operation retrieves the mhubs that belong to an existing room with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}/mhubs`**
+ * Full URL: `http://localhost:8080/api` **`/rooms/{id}/mhubs`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
