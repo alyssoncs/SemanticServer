@@ -659,6 +659,77 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 }
 ```
 
+### **GET**  `/users/{id}/things`
+#### Retrieve an existing user
+This operation retrieves an existing user with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | user JSON |
+|{id}  | The id of the user|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | array of things retrieved    |
+
+
+```json
+{
+    "things": [
+        {
+            "id":          13,
+            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
+            "description": "Tercio's bluetooth beacon",
+            "holderID":    2360
+        }
+    ]
+}
+```
+
+### **GET**  `/users/{id}/mhubs`
+#### Retrieve an existing user
+This operation retrieves an existing user with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | user JSON |
+|{id}  | The id of the user|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | array of mhubs retrieved    |
+
+```json
+{
+    "mhubs": [
+        {
+            "id":          13,
+            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
+            "description": "Rodolfo's Iphone",
+            "holderID":    2361
+        }
+    ]
+}
+```
+
 ## Roles
 
 ### **POST**  `/roles`
