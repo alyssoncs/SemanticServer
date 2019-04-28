@@ -5,14 +5,13 @@ The Semantic Server is a web service that maps the relationships between wireles
 ## Resources
 
 There are seven resources that the Semantic Server keeps, they are:
-
+* [Things](#Things)
+* [Mhubs](#Mhubs)
+* [Users](#Users)
+* [Roles](#Roles)
+* [Rooms](#Rooms)
 * Buildings
 * Sections
-* Rooms
-* Users
-* Roles
-* Mhubs
-* Things
 
 Rooms belog to Sections that belongs to Buildings. Mhubs and Things belogs to either Users or Rooms. and Users might have Roles.
 
@@ -839,6 +838,197 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ```json
 {
     "roles": [
+        {
+            "id":  3,
+            "name": "PhD Student"
+        },
+        {
+            "id":  2,
+            "name": "Professor"
+        }
+    ]
+}
+```
+
+## Rooms
+
+### **POST**  `/rooms`
+#### Register a new room
+This operation inserts a new room, expressed in the JSON format, into the Semantic Server.
+**Note that all room fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/rooms`**
+ * HTTP Method: **POST**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | room JSON |
+
+Example:
+
+```json
+{
+    "room": {
+        "name":   "PHD Student",
+   }
+}
+```
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 201 (CREATED)      |
+| Payload   | room created       |
+
+
+```json
+{
+    "room": {
+        "id":   3,
+        "name": "PHD Student"
+   }
+}
+```
+
+### **PUT**  `/rooms/{id}`
+#### Update an existing room
+This operation update an existing room with id equals `{id}`. The new values should be expressed in the JSON format.
+**Note that all room fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/rooms/{id}`**
+ * HTTP Method: **PUT**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | room JSON |
+|{id}  | The id of the room|
+
+Example:
+
+```json
+{
+    "room": {
+        "name": "PhD Student"
+   }
+}
+```
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | room created      |
+
+
+```json
+{
+    "room": {
+        "id":   3,
+        "name": "PhD Student"
+   }
+}
+```
+
+### **DELETE**  `/rooms/{id}`
+#### Delete an existing room
+This operation deletes an existing room with id equals `{id}` from the Semantic Server.
+**Note that all room fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/rooms/{id}`**
+ * HTTP Method: **DELETE**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | Empty           |
+|{id}  | The id of the room|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | room deleted      |
+
+
+```json
+{
+    "room": {
+        "id":  3,
+        "name": "PhD Student"
+   }
+}
+```
+
+
+### **GET**  `/rooms/{id}`
+#### Retrieve an existing room
+This operation update an existing room with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/rooms/{id}`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | room JSON |
+|{id}  | The id of the room|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | room retrieved    |
+
+
+```json
+{
+    "room": {
+        "id":  3,
+        "name": "PhD Student"
+   }
+}
+```
+
+
+### **GET**  `/rooms`
+#### Retrieve all the rooms
+This operation retrieves all the existing rooms from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/rooms`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+|  | |
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | Array of the rooms retrieved |
+
+
+```json
+{
+    "rooms": [
         {
             "id":  3,
             "name": "PhD Student"
