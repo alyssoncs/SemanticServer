@@ -10,8 +10,8 @@ There are seven resources that the Semantic Server keeps, they are:
 * [Users](#Users)
 * [Roles](#Roles)
 * [Rooms](#Rooms)
-* Buildings
 * Sections
+* Buildings
 
 Rooms belog to Sections that belongs to Buildings. Mhubs and Things belogs to either Users or Rooms. and Users might have Roles.
 
@@ -103,7 +103,7 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | Thing created      |
+| Payload   | Thing updated      |
 
 
 ```json
@@ -318,7 +318,7 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | mhub created      |
+| Payload   | mhub updated      |
 
 
 ```json
@@ -533,7 +533,7 @@ Where `roleID` is the ID of a Role.
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | user created      |
+| Payload   | user updated      |
 
 
 ```json
@@ -681,7 +681,7 @@ Example:
 ```json
 {
     "role": {
-        "name":   "PHD Student",
+        "name":   "PHD Student"
    }
 }
 ```
@@ -734,7 +734,7 @@ Example:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | role created      |
+| Payload   | role updated      |
 
 
 ```json
@@ -872,11 +872,13 @@ Example:
 ```json
 {
     "room": {
-        "name":   "PHD Student",
+        "name":      "Reunion room",
+        "sectionID": 2
    }
 }
 ```
 
+Where `sectionID` is an id of an existing Section.
 
 ##### Output Parameters:
 | Name      | Value              |
@@ -888,11 +890,13 @@ Example:
 ```json
 {
     "room": {
-        "id":   3,
-        "name": "PHD Student"
+        "id":        20,
+        "name":      "Reunion room",
+        "sectionID": 2
    }
 }
 ```
+
 
 ### **PUT**  `/rooms/{id}`
 #### Update an existing room
@@ -915,7 +919,8 @@ Example:
 ```json
 {
     "room": {
-        "name": "PhD Student"
+        "name":      "Reunion Room",
+        "sectionID": 2
    }
 }
 ```
@@ -925,17 +930,18 @@ Example:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | room created      |
-
+| Payload   | room updated      |
 
 ```json
 {
     "room": {
-        "id":   3,
-        "name": "PhD Student"
+        "id":        20,
+        "name":      "Reunion Room",
+        "sectionID": 2
    }
 }
 ```
+
 
 ### **DELETE**  `/rooms/{id}`
 #### Delete an existing room
@@ -964,8 +970,9 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ```json
 {
     "room": {
-        "id":  3,
-        "name": "PhD Student"
+        "id":        20,
+        "name":      "Reunion Room",
+        "sectionID": 2
    }
 }
 ```
@@ -997,8 +1004,9 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ```json
 {
     "room": {
-        "id":  3,
-        "name": "PhD Student"
+        "id":        20,
+        "name":      "Reunion Room",
+        "sectionID": 2
    }
 }
 ```
@@ -1030,12 +1038,14 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 {
     "rooms": [
         {
-            "id":  3,
-            "name": "PhD Student"
+            "id":        20,
+            "name":      "Reunion Room",
+            "sectionID": 2
         },
         {
-            "id":  2,
-            "name": "Professor"
+            "id":        19,
+            "name":      "Server Room",
+            "sectionID": 2
         }
     ]
 }
