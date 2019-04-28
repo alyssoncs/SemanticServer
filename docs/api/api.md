@@ -155,7 +155,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ### **GET**  `/things/{id}`
 #### Retrieve an existing thing
-This operation update an existing thing with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing thing with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/things/{id}`**
@@ -370,7 +370,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ### **GET**  `/mhubs/{id}`
 #### Retrieves an existing mhub
-This operation update an existing mhub with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing mhub with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/mhubs/{id}`**
@@ -585,7 +585,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ### **GET**  `/users/{id}`
 #### Retrieve an existing user
-This operation update an existing user with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing user with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/users/{id}`**
@@ -782,7 +782,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ### **GET**  `/roles/{id}`
 #### Retrieve an existing role
-This operation update an existing role with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing role with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/roles/{id}`**
@@ -980,7 +980,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ### **GET**  `/rooms/{id}`
 #### Retrieve an existing room
-This operation update an existing room with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing room with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/rooms/{id}`**
@@ -1182,7 +1182,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ### **GET**  `/sections/{id}`
 #### Retrieve an existing section
-This operation update an existing section with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing section with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/sections/{id}`**
@@ -1376,7 +1376,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ### **GET**  `/buidings/{id}`
 #### Retrieve an existing buiding
-This operation update an existing buiding with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing buiding with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/buidings/{id}`**
