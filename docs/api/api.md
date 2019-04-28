@@ -26,8 +26,8 @@ Thus, assuming that the server has been deployed at `http://localhost:8080`, all
 ### **POST**  `/things`
 #### Register a new thing
 This operation inserts a new thing, expressed in the JSON format, into the Semantic Server.
-**Note that all Thing fields are required**. 
-If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+**Note that all Thing fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/things`**
  * HTTP Method: **POST**
@@ -73,8 +73,8 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 ### **PUT**  `/things/{id}`
 #### Update an existing thing
 This operation update an existing thing with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all Thing fields are required**. 
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+**Note that all Thing fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/things/{id}`**
  * HTTP Method: **PUT**
@@ -121,8 +121,8 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 ### **DELETE**  `/things/{id}`
 #### Delete an existing thing
 This operation deletes an existing thing with id equals `{id}` from the Semantic Server.
-**Note that all Thing fields are required**. 
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+**Note that all Thing fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/things/{id}`**
  * HTTP Method: **DELETE**
@@ -155,9 +155,9 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 
 ### **GET**  `/things/{id}`
-#### Retrieves an existing thing
+#### Retrieve an existing thing
 This operation update an existing thing with id equals `{id}`, from the Semantic Server.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/things/{id}`**
  * HTTP Method: **GET**
@@ -190,9 +190,9 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 
 ### **GET**  `/things`
-#### Retrieves all the things
+#### Retrieve all the things
 This operation retrieves all the existing things from the Semantic Server.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/things`**
  * HTTP Method: **GET**
@@ -241,8 +241,8 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ### **POST**  `/mhubs`
 #### Register a new mhub
 This operation inserts a new mhub, expressed in the JSON format, into the Semantic Server.
-**Note that all mhub fields are required**. 
-If everymhub goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+**Note that all mhub fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/mhubs`**
  * HTTP Method: **POST**
@@ -288,8 +288,8 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 ### **PUT**  `/mhubs/{id}`
 #### Update an existing mhub
 This operation update an existing mhub with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all mhub fields are required**. 
-If everymhub goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+**Note that all mhub fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/mhubs/{id}`**
  * HTTP Method: **PUT**
@@ -336,8 +336,8 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 ### **DELETE**  `/mhubs/{id}`
 #### Delete an existing mhub
 This operation deletes an existing mhub with id equals `{id}` from the Semantic Server.
-**Note that all mhub fields are required**. 
-If everymhub goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+**Note that all mhub fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/mhubs/{id}`**
  * HTTP Method: **DELETE**
@@ -372,7 +372,7 @@ If everymhub goes well, Semantic Server returns a response with HTTP status code
 ### **GET**  `/mhubs/{id}`
 #### Retrieves an existing mhub
 This operation update an existing mhub with id equals `{id}`, from the Semantic Server.
-If everymhub goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/mhubs/{id}`**
  * HTTP Method: **GET**
@@ -405,9 +405,9 @@ If everymhub goes well, Semantic Server returns a response with HTTP status code
 
 
 ### **GET**  `/mhubs`
-#### Retrieves all the mhubs
+#### Retrieve all the mhubs
 This operation retrieves all the existing mhubs from the Semantic Server.
-If everymhub goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST). 
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/mhubs`**
  * HTTP Method: **GET**
@@ -450,3 +450,213 @@ If everymhub goes well, Semantic Server returns a response with HTTP status code
     ]
 }
 ```
+
+## Users
+
+### **POST**  `/users`
+#### Register a new user
+This operation inserts a new user, expressed in the JSON format, into the Semantic Server.
+**Note that all user fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users`**
+ * HTTP Method: **POST**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | user JSON |
+
+Example:
+
+```json
+{
+    "user": {
+        "name":   "Alysson Cirilo",
+        "email":  "alysson.cirilo@lsdi.ufma.br",
+        "roleID": 1248
+   }
+}
+```
+
+Where `roleID` is the ID of a Role.
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 201 (CREATED)      |
+| Payload   | user created       |
+
+
+```json
+{
+    "user": {
+        "id":     15,
+        "name":   "Alysson Cirilo",
+        "email":  "alysson.cirilo@lsdi.ufma.br",
+        "roleID": 1248
+    }
+}
+```
+
+### **PUT**  `/users/{id}`
+#### Update an existing user
+This operation update an existing user with id equals `{id}`. The new values should be expressed in the JSON format.
+**Note that all user fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * HTTP Method: **PUT**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | user JSON |
+|{id}  | The id of the user|
+
+Example:
+
+```json
+{
+    "user": {
+        "name":   "Alysson Cirilo",
+        "email":  "alysson.cirilo@lsdi.ufma.br",
+        "roleID": 2359
+   }
+}
+```
+
+Where `roleID` is the ID of a Role.
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | user created      |
+
+
+```json
+{
+    "user": {
+        "id":     15,
+        "name":   "Alysson Cirilo",
+        "email":  "alysson.cirilo@lsdi.ufma.br",
+        "roleID": 2359
+    }
+}
+```
+
+### **DELETE**  `/users/{id}`
+#### Delete an existing user
+This operation deletes an existing user with id equals `{id}` from the Semantic Server.
+**Note that all user fields are required**.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * HTTP Method: **DELETE**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | Empty           |
+|{id}  | The id of the user|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | user deleted      |
+
+
+```json
+{
+    "user": {
+        "id":     15,
+        "name":   "Alysson Cirilo",
+        "email":  "alysson.cirilo@lsdi.ufma.br",
+        "roleID": 2359
+    }
+}
+```
+
+
+### **GET**  `/users/{id}`
+#### Retrieve an existing user
+This operation update an existing user with id equals `{id}`, from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+| body | user JSON |
+|{id}  | The id of the user|
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | user retrieved    |
+
+
+```json
+{
+    "user": {
+        "id":     15,
+        "name":   "Alysson Cirilo",
+        "email":  "alysson.cirilo@lsdi.ufma.br",
+        "roleID": 2359
+    }
+}
+```
+
+
+### **GET**  `/users`
+#### Retrieve all the users
+This operation retrieves all the existing users from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/users`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+|  | |
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | Array of the users retrieved |
+
+
+```json
+{
+    "users": [
+        {
+            "id":     15,
+            "name":   "Alysson Cirilo",
+            "email":  "alysson.cirilo@lsdi.ufma.br",
+            "roleID": 2359
+        },
+        {
+            "id":     14,
+            "name":   "Rodolfo Alves",
+            "email":  "rodolfosalves@lsdi.ufma.br",
+            "roleID": 2359
+        }
+    ]
+}
+```
+
