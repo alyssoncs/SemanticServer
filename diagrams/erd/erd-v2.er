@@ -2,28 +2,28 @@ title {label: "Semantic Server Database", size: "30"}
 entity {bgcolor: "#ececfc"}
 
 [device] {bgcolor: "#fbfbdb"}
-        *device_uuid {label: "bigint <pk>"}
+        *device_uuid {label: "uuid <pk>"}
         +fk_holder_id {label: "bigint <fk>"}
         description {label: "varchar(255)"}
 
 [thing]
-        *+fk_device_uuid {label: "bigint <pk> <fk>"}
+        *+fk_device_uuid {label: "uuid <pk> <fk>"}
 
 [mhub]
-        *+fk_device_uuid {label: "bigint <pk> <fk>"}
+        *+fk_device_uuid {label: "uuid <pk> <fk>"}
 
-[user]
-        *email {label: "varchar(255) UNIQUE <pk>"}
-        *+fk_holder_id {label: "bigint UNIQUE  <pk> <fk>"}
+[person]
+        *+fk_holder_id {label: "bigint <pk> <fk>"}
+        email {label: "varchar(255) UNIQUE <pk>"}
         name {label: "varchar(255)"}
 
 [role]
-        *role_id {label: "bigint <pk>"}
-        role_name {label: "varchar(255) UNIQUE"}
+#        *role_id {label: "bigint <pk>"}
+        *role_name {label: "varchar(255)"}
 
-[user_role] {bgcolor: "#fcecec"}
+[person_role] {bgcolor: "#fcecec"}
         *+fk_holder_id {label: "bigint <pk> <fk>"}
-        *+fk_role_id {label: "bigint <pk> <fk>"}
+        *+fk_role_name {label: "bigint <pk> <fk>"}
 
 [physical_space]
         *+fk_holder_id {label: "bigint <pk> <fk>"}
@@ -38,11 +38,11 @@ device 1--? thing {label: "is"}
 device 1--? mhub {label: "is"}
 device *--? holder {label: "belongs to"}
 
-holder 1--? user {label: "is"}
+holder 1--? person {label: "is"}
 holder 1--? physical_space {label: "is"}
 
 physical_space *--? physical_space {label: "belongs to"}
 
-user_role *--1 user
-user_role *--1 role
+person_role *--1 person
+person_role *--1 role
 
