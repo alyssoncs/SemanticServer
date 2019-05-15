@@ -14,6 +14,8 @@ public class Holder {
 
 	@Id
 	@Column(name = "holder_id")
+	@SequenceGenerator(name = "holder_holder_id_seq", sequenceName = "holder_holder_id_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "holder_holder_id_seq")
 	private Long id;
 
 	//@OneToMany

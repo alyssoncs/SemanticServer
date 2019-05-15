@@ -4,6 +4,7 @@ entity {bgcolor: "#ececfc"}
 [device] {bgcolor: "#fbfbdb"}
         *device_uuid {label: "uuid <pk>"}
         +fk_holder_id {label: "bigint <fk>"}
+        name {label: "varchar(16) NOT NULL"}
         description {label: "varchar(255)"}
 
 [thing]
@@ -13,22 +14,23 @@ entity {bgcolor: "#ececfc"}
         *+fk_device_uuid {label: "uuid <pk> <fk>"}
 
 [person]
-        *+fk_holder_id {label: "bigint <pk> <fk>"}
-        email {label: "varchar(255) UNIQUE <pk>"}
-        name {label: "varchar(255)"}
+        *email {label: "varchar(255) <pk>"}
+        +fk_holder_id {label: "bigint UNIQUE NOT NULL <fk>"}
+        short_name {label: "varchar(255) NOT NULL"}
+        full_name {label: "varchar(16)"}
 
 [role]
-#        *role_id {label: "bigint <pk>"}
         *role_name {label: "varchar(255)"}
 
 [person_role] {bgcolor: "#fcecec"}
         *+fk_holder_id {label: "bigint <pk> <fk>"}
-        *+fk_role_name {label: "bigint <pk> <fk>"}
+        *+fk_role_name {label: "varchar(255) <pk> <fk>"}
 
 [physical_space]
         *+fk_holder_id {label: "bigint <pk> <fk>"}
         +fk_parent_physical_space_id {label: "bigint <fk>"}
-        name {label: "varchar(255)"}
+        name {label: "varchar(16)"}
+        description {label: "varchar(255)"}
 
 [holder] {bgcolor: "#fbfbdb"}
         *holder_id {label: "bigint <pk>"}

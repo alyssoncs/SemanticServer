@@ -6,8 +6,6 @@ services:
     environment:
       POSTGRES_PASSWORD: "123456"
       POSTGRES_DB: semantic-server
-    ports:
-      - "5432:5432"
     volumes:
       - /home/alysson/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data
 
@@ -21,10 +19,3 @@ services:
       - db
 
 
-        #  semantic-server:
-        #    build: ./semanticserver
-        #    environment:
-        #      POSTGRES_PASSWORD: "123456"
-        #      POSTGRES_DB: semantic-server
-        #    ports: 
-        #      - "5001:8080"

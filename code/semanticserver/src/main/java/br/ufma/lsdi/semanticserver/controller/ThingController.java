@@ -44,6 +44,9 @@ public class ThingController {
 
 	@PostMapping
 	public ResponseEntity<Device> createThing(@Valid @RequestBody Device thing, HttpServletResponse response) {
+		if (thing.getUuid() == null)
+			thing.setUuid(UUID.randomUUID().toString());
+
 		Thing savedThing = thingService.saveDeviceAndThing(thing);
 
 		buildResponseHeader(response, savedThing.getId());

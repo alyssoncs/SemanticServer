@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/mhubs")
@@ -43,6 +44,9 @@ public class MhubController {
 
 	@PostMapping
 	public ResponseEntity<Device> createThing(@Valid @RequestBody Device mhub, HttpServletResponse response) {
+		if (mhub.getUuid() == null)
+			mhub.setUuid(UUID.randomUUID().toString());
+
 		Mhub savedMhub = mhubService.saveDeviceAndMhub(mhub);
 
 		buildResponseHeader(response, savedMhub.getId());

@@ -14,8 +14,6 @@ import java.util.UUID;
 @Table(name = "device")
 public class Device {
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	@Column(name = "device_uuid")
 	private String uuid;
 
