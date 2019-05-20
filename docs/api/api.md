@@ -25,7 +25,8 @@ Thus, assuming that the server has been deployed at `http://localhost:8080`, all
 ### **POST**  `/things`
 #### Register a new thing
 This operation inserts a new thing, expressed in the JSON format, into the Semantic Server.
-**Note that all Thing fields are required**.
+**Note that not all Thing fields are required**.
+`description`, `holder` and `uuid` can be set to `null`. if `uuid` is `null`, it will be set by the service itself.
 If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/things`**
@@ -41,15 +42,17 @@ Example:
 
 ```json
 {
-    "thing": {
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-        "description": "LSDi bluetooth beacon",
-        "holderID":    1248
-   }
+	"uuid": "7ffae023-41f6-4a1f-a90c-abcffe417195",
+	"name": "LSDi beacon",
+	"description": "beacon de tercio",
+	"holder": {
+		"id": 7
+	}
+	
 }
 ```
 
-Where `holderID` is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
+Where `id` property of `holder` object is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
 
 ##### Output Parameters:
 | Name      | Value              |
@@ -60,22 +63,22 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 
 ```json
 {
-    "thing": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-        "description": "LSDi bluetooth beacon",
-        "holderID":    1248
-    }
+  "uuid": "7ffae023-41f6-4a1f-a90c-abcffe417195",
+  "holder": {
+    "id": 7
+  },
+  "description": "beacon de tercio",
+  "name": "LSDi beacon"
 }
 ```
 
-### **PUT**  `/things/{id}`
+### **PUT**  `/things/{uuid}`
 #### Update an existing thing
-This operation update an existing thing with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all Thing fields are required**.
+This operation update an existing thing with id equals `{uuid}`. The new values should be expressed in the JSON format.
+**Note that not all Thing fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/things/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/things/{uuid}`**
  * HTTP Method: **PUT**
 
 ##### Input Parameters:
@@ -83,21 +86,23 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | Thing JSON |
-|{id}  | The id of the thing|
+|{uuid}  | The id of the thing|
 
 Example:
 
 ```json
 {
-    "thing": {
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-        "description": "LSDi bluetooth beacon",
-        "holderID":    2359
-   }
+	"uuid": "7ffae023-41f6-4a1f-a90c-abcffe417195",
+	"name": "LSDi beacon",
+	"description": "beacon de tercio",
+	"holder": {
+		"id": 7
+	}
+	
 }
 ```
 
-Where `holderID` is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
+Where `id` property of `holder` object is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
 
 ##### Output Parameters:
 | Name      | Value              |
@@ -108,22 +113,21 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 
 ```json
 {
-    "thing": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-        "description": "LSDi bluetooth beacon",
-        "holderID":    2359
-    }
+  "uuid": "7ffae023-41f6-4a1f-a90c-abcffe417195",
+  "holder": {
+    "id": 7
+  },
+  "description": "beacon de tercio",
+  "name": "LSDi beacon"
 }
 ```
 
-### **DELETE**  `/things/{id}`
+### **DELETE**  `/things/{uuid}`
 #### Delete an existing thing
-This operation deletes an existing thing with id equals `{id}` from the Semantic Server.
-**Note that all Thing fields are required**.
+This operation deletes an existing thing with id equals `{uuid}` from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/things/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/things/{uuid}`**
  * HTTP Method: **DELETE**
 
 ##### Input Parameters:
@@ -131,42 +135,32 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | Empty           |
-|{id}  | The id of the thing|
+|{uuid}  | The id of the thing|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | Thing deleted      |
+| HTTP Code | 204 (No Content) or 404 (Not Found)           |
+| Payload   | Empty      |
 
 
-```json
-{
-    "thing": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-        "description": "LSDi bluetooth beacon",
-        "holderID":    2359
-    }
-}
-```
 
 
-### **GET**  `/things/{id}`
+### **GET**  `/things/{uuid}`
 #### Retrieve an existing thing
-This operation retrieves an existing thing with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing thing with id equals `{uuid}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/things/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/things/{uuid}`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | Thing JSON |
-|{id}  | The id of the thing|
+| body | Empty |
+|{uuid}  | The id of the thing|
 
 
 ##### Output Parameters:
@@ -178,12 +172,12 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ```json
 {
-    "thing": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-        "description": "LSDi bluetooth beacon",
-        "holderID":    2359
-    }
+  "uuid": "7ffae023-41f6-4a1f-a90c-abcffe417195",
+  "holder": {
+    "id": 7
+  },
+  "description": "beacon de tercio",
+  "name": "LSDi beacon"
 }
 ```
 
@@ -211,28 +205,24 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 
 ```json
-{
-    "things": [
-        {
-            "id":          15,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-            "description": "LSDi bluetooth beacon",
-            "holderID":    2359
-        },
-        {
-            "id":          14,
-            "UUID":        "8d53edbe-2feb-4e63-a1d5-64334587a2df",
-            "description": "LSDi bluetooth beacon 2",
-            "holderID":    2363
-        },
-        {
-            "id":          13,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-            "description": "Tercio's bluetooth beacon",
-            "holderID":    2360
-        }
-    ]
-}
+[
+  {
+    "uuid": "7ffae023-41f6-4a1f-a90c-abcffe417195",
+    "holder": {
+      "id": 7
+    },
+    "description": "beacon de tercio",
+    "name": "LSDi beacon"
+  },
+  {
+    "uuid": "b6421d2b-58ca-4c5a-97b1-ddc0a308f0f4",
+    "holder": {
+      "id": 7
+    },
+    "description": null,
+    "name": "arduino uno"
+  }
+]
 ```
 
 ## Mhubs
@@ -240,7 +230,8 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ### **POST**  `/mhubs`
 #### Register a new mhub
 This operation inserts a new mhub, expressed in the JSON format, into the Semantic Server.
-**Note that all mhub fields are required**.
+**Note that not all mhub fields are required**.
+`description`, `holder` and `uuid` can be set to `null`. if `uuid` is `null`, it will be set by the service itself.
 If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
  * Full URL: `http://localhost:8080/api` **`/mhubs`**
@@ -256,15 +247,15 @@ Example:
 
 ```json
 {
-    "mhub": {
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-        "description": "LSDi moto G",
-        "holderID":    1248
-   }
+	"name":"Moto Z1",
+	"description": "melhor celular de todos os tempos",
+	"holder": {
+    "id": 6
+  }
 }
 ```
 
-Where `holderID` is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
+Where `id` property of `holder` object is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
 
 ##### Output Parameters:
 | Name      | Value              |
@@ -275,22 +266,22 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 
 ```json
 {
-    "mhub": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-        "description": "LSDi moto G",
-        "holderID":    1248
-    }
+  "uuid": "6d3d5a57-d041-405d-b398-6d98dd33d332",
+  "holder": {
+    "id": 6
+  },
+  "description": "melhor celular de todos os tempos",
+  "name": "Moto Z1"
 }
 ```
 
-### **PUT**  `/mhubs/{id}`
+### **PUT**  `/mhubs/{uuid}`
 #### Update an existing mhub
-This operation update an existing mhub with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all mhub fields are required**.
+This operation update an existing mhub with id equals `{uuid}`. The new values should be expressed in the JSON format.
+**Note that not all mhub fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/mhubs/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/mhubs/{uuid}`**
  * HTTP Method: **PUT**
 
 ##### Input Parameters:
@@ -298,21 +289,22 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | mhub JSON |
-|{id}  | The id of the mhub|
+|{uuid}  | The id of the mhub|
 
 Example:
 
 ```json
 {
-    "mhub": {
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-        "description": "LSDi moto G",
-        "holderID":    2359
-   }
+  "uuid": "6d3d5a57-d041-405d-b398-6d98dd33d332",
+  "holder": {
+    "id": 6
+  },
+  "description": "melhor celular de todos os tempos",
+  "name": "Moto Z1"
 }
 ```
 
-Where `holderID` is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
+Where `id` property of `holder` object is the ID of either a User or a Room (The IDs of Users and Rooms are garanteed to be mutually exclusive).
 
 ##### Output Parameters:
 | Name      | Value              |
@@ -323,22 +315,21 @@ Where `holderID` is the ID of either a User or a Room (The IDs of Users and Room
 
 ```json
 {
-    "mhub": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-        "description": "LSDi moto G",
-        "holderID":    2359
-    }
+  "uuid": "6d3d5a57-d041-405d-b398-6d98dd33d332",
+  "holder": {
+    "id": 6
+  },
+  "description": "melhor celular de todos os tempos",
+  "name": "Moto Z1"
 }
 ```
 
-### **DELETE**  `/mhubs/{id}`
+### **DELETE**  `/mhubs/{uuid}`
 #### Delete an existing mhub
-This operation deletes an existing mhub with id equals `{id}` from the Semantic Server.
-**Note that all mhub fields are required**.
+This operation deletes an existing mhub with id equals `{uuid}` from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/mhubs/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/mhubs/{uuid}`**
  * HTTP Method: **DELETE**
 
 ##### Input Parameters:
@@ -346,34 +337,24 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | Empty           |
-|{id}  | The id of the mhub|
+|{uuid}  | The id of the mhub|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | mhub deleted      |
+| HTTP Code | 204 (No content) or 404(Not found)          |
+| Payload   | Empty      |
 
 
-```json
-{
-    "mhub": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-        "description": "LSDi moto G",
-        "holderID":    2359
-    }
-}
-```
 
 
-### **GET**  `/mhubs/{id}`
+### **GET**  `/mhubs/{uuid}`
 #### Retrieves an existing mhub
-This operation retrieves an existing mhub with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing mhub with id equals `{uuid}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/mhubs/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/mhubs/{uuid}`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -381,7 +362,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | mhub JSON |
-|{id}  | The id of the mhub|
+|{uuid}  | The id of the mhub|
 
 
 ##### Output Parameters:
@@ -393,12 +374,10 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ```json
 {
-    "mhub": {
-        "id":          15,
-        "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-        "description": "LSDi moto G",
-        "holderID":    2359
-    }
+  "uuid": "67c6d15d-f73f-4b2d-9023-65184eb444e6",
+  "holder": null,
+  "description": null,
+  "name": "Iphone 6"
 }
 ```
 
@@ -426,58 +405,52 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 
 ```json
-{
-    "mhubs": [
-        {
-            "id":          15,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-            "description": "LSDi moto G",
-            "holderID":    2359
-        },
-        {
-            "id":          14,
-            "UUID":        "8d53edbe-2feb-4e63-a1d5-64334587a2de",
-            "description": "LSDi moto G2",
-            "holderID":    2363
-        },
-        {
-            "id":          13,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-            "description": "Rodolfo's Iphone",
-            "holderID":    2361
-        }
-    ]
-}
+[
+  {
+    "uuid": "67c6d15d-f73f-4b2d-9023-65184eb444e6",
+    "holder": null,
+    "description": null,
+    "name": "Iphone 6"
+  },
+  {
+    "uuid": "6d3d5a57-d041-405d-b398-6d98dd33d332",
+    "holder": {
+      "id": 6
+    },
+    "description": "melhor celular de todos os tempos",
+    "name": "Moto Z1"
+  }
+]
 ```
 
-## Users
+## Persons
 
-### **POST**  `/users`
-#### Register a new user
-This operation inserts a new user, expressed in the JSON format, into the Semantic Server.
-**Note that all user fields are required**.
+### **POST**  `/persons`
+#### Register a new person
+This operation inserts a new person, expressed in the JSON format, into the Semantic Server.
+**Note that not all person fields are required**.
+`fullName`, `roles` can be set to `null`.
+`holder` object will be set automatically.
 If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users`**
+ * Full URL: `http://localhost:8080/api` **`/persons`**
  * HTTP Method: **POST**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | user JSON |
+| body | person JSON |
 
 Example:
 
 ```json
 {
-    "user": {
-        "name":   "Alysson Cirilo",
-        "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roles": [
-            1248
-        ]
-   }
+	"shortName": "Tercio Santana",
+	"email": "tercio.sss@gmail.com",
+	"roles": [
+		{"name": "Aluno de Mestrado"}
+	]
 }
 ```
 
@@ -487,49 +460,50 @@ Where `roles` is an array of ID of Roles.
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 201 (CREATED)      |
-| Payload   | user created       |
+| Payload   | person created       |
 
 
 ```json
 {
-    "user": {
-        "id":     15,
-        "name":   "Alysson Cirilo",
-        "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roles": [
-            1248
-        ]
+  "email": "tercio.sss@gmail.com",
+  "holder": {
+    "id": 7
+  },
+  "shortName": "Tercio Santana",
+  "roles": [
+    {
+      "name": "Aluno de Mestrado"
     }
+  ],
+  "fullName": null
 }
 ```
 
-### **PUT**  `/users/{id}`
-#### Update an existing user
-This operation update an existing user with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all user fields are required**.
+### **PUT**  `/persons/{email}`
+#### Update an existing person
+This operation update an existing person with email equals `{email}`. The new values should be expressed in the JSON format.
+**Note that not all person fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/persons/{email}`**
  * HTTP Method: **PUT**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | user JSON |
-|{id}  | The id of the user|
+| body | person JSON |
+|{email}  | The id of the person|
 
 Example:
 
 ```json
 {
-    "user": {
-        "name":   "Alysson Cirilo",
-        "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roles": [
-            2359
-        ]
-   }
+	"shortName": "Tercio Santana",
+	"email": "tercio.sss@gmail.com",
+	"roles": [
+		{"name": "Aluno de Mestrado"}
+	]
 }
 ```
 
@@ -539,29 +513,32 @@ Where `roles` is an array of ID of Roles.
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | user updated      |
+| Payload   | person created       |
 
 
 ```json
 {
-    "user": {
-        "id":     15,
-        "name":   "Alysson Cirilo",
-        "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roles": [
-            2359
-        ]
+  "email": "tercio.sss@gmail.com",
+  "holder": {
+    "id": 7
+  },
+  "shortName": "Tercio Santana",
+  "roles": [
+    {
+      "name": "Aluno de Mestrado"
     }
+  ],
+  "fullName": null
 }
 ```
 
-### **DELETE**  `/users/{id}`
-#### Delete an existing user
-This operation deletes an existing user with id equals `{id}` from the Semantic Server.
-**Note that all user fields are required**.
+### **DELETE**  `/persons/{email}`
+#### Delete an existing person
+This operation deletes an existing person with id equals `{email}` from the Semantic Server.
+**Note that all person fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/persons/{email}`**
  * HTTP Method: **DELETE**
 
 ##### Input Parameters:
@@ -569,73 +546,67 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | Empty           |
-|{id}  | The id of the user|
+|{email}  | The id of the person|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | user deleted      |
+| HTTP Code | 204 (no content)           |
+| Payload   | empty      |
 
 
-```json
-{
-    "user": {
-        "id":     15,
-        "name":   "Alysson Cirilo",
-        "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roles": [
-            2359
-        ]
-    }
-}
-```
 
 
-### **GET**  `/users/{id}`
-#### Retrieve an existing user
-This operation retrieves an existing user with id equals `{id}`, from the Semantic Server.
+### **GET**  `/persons/{email}`
+#### Retrieve an existing person
+This operation retrieves an existing person with id equals `{email}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/persons/{email}`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | user JSON |
-|{id}  | The id of the user|
+| body | person JSON |
+|{email}  | The id of the person|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | user retrieved    |
+| Payload   | person retrieved    |
 
 
 ```json
 {
-    "user": {
-        "id":     15,
-        "name":   "Alysson Cirilo",
-        "email":  "alysson.cirilo@lsdi.ufma.br",
-        "roles": [
-            2359
-        ]
+  "email": "alysson.cirilo@lsdi.ufma.br",
+  "holder": {
+    "id": 6
+  },
+  "shortName": "Alysson Cirilo",
+  "roles": [
+    {
+      "name": "Aluno de Graduacao"
+    },
+    {
+      "name": "Aluno de IC"
     }
+  ],
+  "fullName": null
 }
 ```
 
 
-### **GET**  `/users`
-#### Retrieve all the users
-This operation retrieves all the existing users from the Semantic Server.
+### **GET**  `/persons`
+#### Retrieve all the persons
+This operation retrieves all the existing persons from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users`**
+ * Full URL: `http://localhost:8080/api` **`/persons`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -649,46 +620,66 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | Array of the users retrieved |
+| Payload   | Array of the persons retrieved |
 
 
 ```json
-{
-    "users": [
-        {
-            "id":     15,
-            "name":   "Alysson Cirilo",
-            "email":  "alysson.cirilo@lsdi.ufma.br",
-            "roles": [
-                2359
-            ]
-        },
-        {
-            "id":     14,
-            "name":   "Rodolfo Alves",
-            "email":  "rodolfosalves@lsdi.ufma.br",
-            "roles": [
-                2359
-            ]
-        }
-    ]
-}
+[
+  {
+    "email": "joao.neves@gmail.com",
+    "holder": {
+      "id": 1
+    },
+    "shortName": "joão das neves",
+    "roles": [],
+    "fullName": null
+  },
+  {
+    "email": "alysson.cirilo@lsdi.ufma.br",
+    "holder": {
+      "id": 6
+    },
+    "shortName": "Alysson Cirilo",
+    "roles": [
+      {
+        "name": "Aluno de Graduacao"
+      },
+      {
+        "name": "Aluno de IC"
+      }
+    ],
+    "fullName": null
+  },
+  {
+    "email": "tercio.sss@gmail.com",
+    "holder": {
+      "id": 7
+    },
+    "shortName": "Tercio Santana",
+    "roles": [
+      {
+        "name": "Aluno de Mestrado"
+      }
+    ],
+    "fullName": null
+  }
+]
 ```
 
-### **GET**  `/users/{id}/things`
-#### Retrieve the things that belong to an existing user
-This operation retrieves the things that belong to an existing user with id equals `{id}`, from the Semantic Server.
+### **GET**  `/persons/{email}/things` **not implemented**
+#### Retrieve the things that belong to an existing person
+This operation retrieves the things that belong to an existing person with id equals `{email}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}/things`**
+ * Full URL: `http://localhost:8080/api` **`/persons/{email}/things`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | user JSON |
-|{id}  | The id of the user|
+| body | person JSON |
+|{email}  | The id of the person|
 
 
 ##### Output Parameters:
@@ -703,7 +694,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
     "things": [
         {
             "id":          13,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
+            "email":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
             "description": "Tercio's bluetooth beacon",
             "holderID":    2360
         }
@@ -711,20 +702,20 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 }
 ```
 
-### **GET**  `/users/{id}/mhubs`
-#### Retrieve the mhubs that belong to an existing user
-This operation retrieves the mhubs that belong to an existing user with id equals `{id}`, from the Semantic Server.
+### **GET**  `/persons/{email}/mhubs` **not implementd**
+#### Retrieve the mhubs that belong to an existing person
+This operation retrieves the mhubs that belong to an existing person with id equals `{email}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/users/{id}/things`**
+ * Full URL: `http://localhost:8080/api` **`/persons/{email}/things`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | user JSON |
-|{id}  | The id of the user|
+| body | person JSON |
+|{email}  | The id of the person|
 
 
 ##### Output Parameters:
@@ -738,7 +729,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
     "mhubs": [
         {
             "id":          13,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
+            "email":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
             "description": "Rodolfo's Iphone",
             "holderID":    2361
         }
@@ -767,9 +758,7 @@ Example:
 
 ```json
 {
-    "role": {
-        "name":   "PHD Student"
-   }
+    "name":   "PHD Student"
 }
 ```
 
@@ -783,20 +772,17 @@ Example:
 
 ```json
 {
-    "role": {
-        "id":   3,
-        "name": "PHD Student"
-   }
+    "name": "PHD Student"
 }
 ```
 
-### **PUT**  `/roles/{id}`
+### **PUT**  `/roles/{name}`
 #### Update an existing role
-This operation update an existing role with id equals `{id}`. The new values should be expressed in the JSON format.
+This operation update an existing role with id equals `{name}`. The new values should be expressed in the JSON format.
 **Note that all role fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/roles/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/roles/{name}`**
  * HTTP Method: **PUT**
 
 ##### Input Parameters:
@@ -804,15 +790,13 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | role JSON |
-|{id}  | The id of the role|
+|{name}  | The name of the role|
 
 Example:
 
 ```json
 {
-    "role": {
-        "name": "PhD Student"
-   }
+    "name": "PhD Student"
 }
 ```
 
@@ -826,20 +810,17 @@ Example:
 
 ```json
 {
-    "role": {
-        "id":   3,
-        "name": "PhD Student"
-   }
+    "name": "PhD Student"
 }
 ```
 
-### **DELETE**  `/roles/{id}`
+### **DELETE**  `/roles/{name}`
 #### Delete an existing role
-This operation deletes an existing role with id equals `{id}` from the Semantic Server.
+This operation deletes an existing role with id equals `{name}` from the Semantic Server.
 **Note that all role fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/roles/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/roles/{name}`**
  * HTTP Method: **DELETE**
 
 ##### Input Parameters:
@@ -847,32 +828,24 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | Empty           |
-|{id}  | The id of the role|
+|{name}  | The name of the role|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | role deleted      |
+| Payload   | empty      |
 
 
-```json
-{
-    "role": {
-        "id":  3,
-        "name": "PhD Student"
-   }
-}
-```
 
 
-### **GET**  `/roles/{id}`
+### **GET**  `/roles/{name}`
 #### Retrieve an existing role
-This operation retrieves an existing role with id equals `{id}`, from the Semantic Server.
+This operation retrieves an existing role with name equals `{name}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/roles/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/roles/{name}`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -880,7 +853,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | role JSON |
-|{id}  | The id of the role|
+|{name}  | The name of the role|
 
 
 ##### Output Parameters:
@@ -892,10 +865,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 ```json
 {
-    "role": {
-        "id":  3,
-        "name": "PhD Student"
-   }
+  "name": "Aluno de IC"
 }
 ```
 
@@ -923,92 +893,100 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 
 ```json
-{
-    "roles": [
-        {
-            "id":  3,
-            "name": "PhD Student"
-        },
-        {
-            "id":  2,
-            "name": "Professor"
-        }
-    ]
-}
+[
+  {
+    "name": "Aluno de IC"
+  },
+  {
+    "name": "Aluno de Graduacao"
+  },
+  {
+    "name": "Aluno de Mestrado"
+  }
+]
 ```
 
-## Rooms
+## Physical Spaces
 
-### **POST**  `/rooms`
-#### Register a new room
-This operation inserts a new room, expressed in the JSON format, into the Semantic Server.
-**Note that all room fields are required**.
+### **POST**  `/physical_spaces`
+#### Register a new physical space
+This operation inserts a new physical space, expressed in the JSON format, into the Semantic Server.
+**Note that not all physical space fields are required**.
+`parent` and `description` can be set to `null`
 If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/rooms`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces`**
  * HTTP Method: **POST**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | room JSON |
+| body | physical space JSON |
 
 Example:
 
 ```json
 {
-    "room": {
-        "name":      "Reunion room",
-        "sectionID": 2
-   }
+	"name" : "LSDi",
+	"description": "Laboratório de Sistemas Distribuídos Inteligentes",
+	"parent": {
+		"holder": {
+			"id": 8
+		}
+	}
 }
 ```
 
-Where `sectionID` is an id of an existing Section.
+Where `holder` property of `parent` object is an id of an existing physical space, if it is not set to `null` it will mean that this newly created physical space belongs inside the parent physical space.
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 201 (CREATED)      |
-| Payload   | room created       |
+| Payload   | physical space created       |
 
 
 ```json
 {
-    "room": {
-        "id":        20,
-        "name":      "Reunion room",
-        "sectionID": 2
-   }
+  "name": "LSDi",
+  "description": "Laboratório de Sistemas Distribuídos Inteligentes",
+  "holder": {
+    "id": 9
+  },
+  "children": null
 }
 ```
+By default the parent is not returned in the output, but the children are.
 
 
-### **PUT**  `/rooms/{id}`
-#### Update an existing room
-This operation update an existing room with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all room fields are required**.
+### **PUT**  `/physical_spaces/{id}`
+#### Update an existing physical space
+This operation update an existing physical space with id equals `{id}`. The new values should be expressed in the JSON format.
+**Note that not all physical space fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/rooms/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces/{id}`**
  * HTTP Method: **PUT**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | room JSON |
-|{id}  | The id of the room|
+| body | physical space JSON |
+|{id}  | The id of the physical space|
 
 Example:
 
 ```json
 {
-    "room": {
-        "name":      "Reunion Room",
-        "sectionID": 2
-   }
+	"name" : "LSDi",
+	"description": "Laboratório de Sistemas Distribuídos Inteligentes",
+	"parent": {
+		"holder": {
+			"id": 8
+		}
+	}
 }
 ```
 
@@ -1017,26 +995,27 @@ Example:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | room updated      |
+| Payload   | physical space updated      |
 
 ```json
 {
-    "room": {
-        "id":        20,
-        "name":      "Reunion Room",
-        "sectionID": 2
-   }
+  "name": "LSDi",
+  "description": "Laboratório de Sistemas Distribuídos Inteligentes",
+  "holder": {
+    "id": 9
+  },
+  "children": null
 }
 ```
 
 
-### **DELETE**  `/rooms/{id}`
-#### Delete an existing room
-This operation deletes an existing room with id equals `{id}` from the Semantic Server.
-**Note that all room fields are required**.
+### **DELETE**  `/physical_spaces/{id}`
+#### Delete an existing physical space
+This operation deletes an existing physical space with id equals `{id}` from the Semantic Server.
+**Note that all physical space fields are required**.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/rooms/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces/{id}`**
  * HTTP Method: **DELETE**
 
 ##### Input Parameters:
@@ -1044,67 +1023,68 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | Empty           |
-|{id}  | The id of the room|
+|{id}  | The id of the physical space|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | room deleted      |
+| Payload   | empty      |
 
 
-```json
-{
-    "room": {
-        "id":        20,
-        "name":      "Reunion Room",
-        "sectionID": 2
-   }
-}
-```
 
 
-### **GET**  `/rooms/{id}`
-#### Retrieve an existing room
-This operation retrieves an existing room with id equals `{id}`, from the Semantic Server.
+### **GET**  `/physical_spaces/{id}`
+#### Retrieve an existing physical space
+This operation retrieves an existing physical space with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/rooms/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces/{id}`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | room JSON |
-|{id}  | The id of the room|
+| body | physical space JSON |
+|{id}  | The id of the physical space|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | room retrieved    |
+| Payload   | physical space retrieved    |
 
 
 ```json
 {
-    "room": {
-        "id":        20,
-        "name":      "Reunion Room",
-        "sectionID": 2
-   }
+  "name": "UFMA",
+  "description": "Univerdidade Federal do Maranhão",
+  "holder": {
+    "id": 8
+  },
+  "children": [
+    {
+      "name": "LSDi",
+      "description": "Laboratório de Sistemas Distribuídos Inteligentes",
+      "holder": {
+        "id": 14
+      },
+      "children": []
+    }
+  ]
 }
 ```
 
 
-### **GET**  `/rooms`
-#### Retrieve all the rooms
-This operation retrieves all the existing rooms from the Semantic Server.
+### **GET**  `/physical_spaces`
+#### Retrieve all the physical_spaces
+This operation retrieves all the existing physical_spaces from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/rooms`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -1118,32 +1098,45 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | Array of the rooms retrieved |
+| Payload   | Array of the physical_spaces retrieved |
 
 
 ```json
-{
-    "rooms": [
-        {
-            "id":        20,
-            "name":      "Reunion Room",
-            "sectionID": 2
+[
+  {
+    "name": "UFMA",
+    "description": "Univerdidade Federal do Maranhão",
+    "holder": {
+      "id": 8
+    },
+    "children": [
+      {
+        "name": "LSDi",
+        "description": "Laboratório de Sistemas Distribuídos Inteligentes",
+        "holder": {
+          "id": 14
         },
-        {
-            "id":        19,
-            "name":      "Server Room",
-            "sectionID": 2
-        }
+        "children": []
+      }
     ]
-}
+  },
+  {
+    "name": "LSDi",
+    "description": "Laboratório de Sistemas Distribuídos Inteligentes",
+    "holder": {
+      "id": 14
+    },
+    "children": []
+  }
+]
 ```
 
-### **GET**  `/rooms/{id}/things`
-#### Retrieve the things belonging to an existing room
+### **GET**  `/physical_spaces/{id}/things` **not implemented**
+#### Retrieve the things belonging to an existing physical space
 This operation retrieves the things that belong to an existing user with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/rooms/{id}/things`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces/{id}/things`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -1151,7 +1144,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | user JSON |
-|{id}  | The id of the room|
+|{id}  | The id of the physical space|
 
 
 ##### Output Parameters:
@@ -1162,31 +1155,16 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 
 
 ```json
-{
-    "things": [
-        {
-            "id":          15,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2df",
-            "description": "LSDi bluetooth beacon",
-            "holderID":    2359
-        },
-        {
-            "id":          14,
-            "UUID":        "8d53edbe-2feb-4e63-a1d5-64334587a2df",
-            "description": "LSDi bluetooth beacon 2",
-            "holderID":    2363
-        },
-    ]
-}
+
 ```
 
 
-### **GET**  `/rooms/{id}/mhubs`
-#### Retrieve the mhubs that belong to an existing room
-This operation retrieves the mhubs that belong to an existing room with id equals `{id}`, from the Semantic Server.
+### **GET**  `/physical_spaces/{id}/mhubs` **not implemented**
+#### Retrieve the mhubs that belong to an existing physical space
+This operation retrieves the mhubs that belong to an existing physical space with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/rooms/{id}/mhubs`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces/{id}/mhubs`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
@@ -1194,7 +1172,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Name | Payload         |
 |------|-----------------|
 | body | user JSON |
-|{id}  | The id of the room|
+|{id}  | The id of the physical space|
 
 
 ##### Output Parameters:
@@ -1204,415 +1182,47 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 | Payload   | array of mhubs retrieved    |
 
 ```json
-{
-    "mhubs": [
-        {
-            "id":          15,
-            "UUID":        "7d53edbe-2feb-4e63-a1d5-64334587a2de",
-            "description": "LSDi moto G",
-            "holderID":    2359
-        },
-        {
-            "id":          14,
-            "UUID":        "8d53edbe-2feb-4e63-a1d5-64334587a2de",
-            "description": "LSDi moto G2",
-            "holderID":    2363
-        },
-    ]
-}
+
 ```
 
-
-## Sections
-
-### **POST**  `/sections`
-#### Register a new section
-This operation inserts a new section, expressed in the JSON format, into the Semantic Server.
-**Note that all section fields are required**.
-If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/sections`**
- * HTTP Method: **POST**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-| body | section JSON |
-
-Example:
-
-```json
-{
-    "section": {
-        "name":      "LSD",
-        "buildingID": 4
-   }
-}
-```
-
-Where `buildingID` is an id of an existing Building.
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 201 (CREATED)      |
-| Payload   | section created       |
-
-
-```json
-{
-    "section": {
-        "id":         2,
-        "name":       "LSD",
-        "buildingID": 4
-   }
-}
-```
-
-
-### **PUT**  `/sections/{id}`
-#### Update an existing section
-This operation update an existing section with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all section fields are required**.
+### **GET**  `/physical_spaces/{id}/mhubs` **not implemented**
+#### Retrieve the parent of an existing physical space
+This operation retrieves the parent of an existing physical space with id equals `{id}`, from the Semantic Server.
 If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
 
- * Full URL: `http://localhost:8080/api` **`/sections/{id}`**
- * HTTP Method: **PUT**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-| body | section JSON |
-|{id}  | The id of the section|
-
-Example:
-
-```json
-{
-    "section": {
-        "name":       "LSDi",
-        "buildingID": 4
-   }
-}
-```
-
-Where `buildingID` is an id of an existing Building.
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | section updated      |
-
-```json
-{
-    "section": {
-        "id":         2,
-        "name":       "LSDi",
-        "buildingID": 4
-   }
-}
-```
-
-
-### **DELETE**  `/sections/{id}`
-#### Delete an existing section
-This operation deletes an existing section with id equals `{id}` from the Semantic Server.
-**Note that all section fields are required**.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/sections/{id}`**
- * HTTP Method: **DELETE**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-| body | Empty           |
-|{id}  | The id of the section|
-
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | section deleted      |
-
-
-```json
-{
-    "section": {
-        "id":         2,
-        "name":       "LSDi",
-        "buildingID": 4
-   }
-}
-```
-
-
-### **GET**  `/sections/{id}`
-#### Retrieve an existing section
-This operation retrieves an existing section with id equals `{id}`, from the Semantic Server.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/sections/{id}`**
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces/{id}/mhubs`**
  * HTTP Method: **GET**
 
 ##### Input Parameters:
 
 | Name | Payload         |
 |------|-----------------|
-| body | section JSON |
-|{id}  | The id of the section|
+| body | user JSON |
+|{id}  | The id of the physical space|
 
 
 ##### Output Parameters:
 | Name      | Value              |
 |-----------|--------------------|
 | HTTP Code | 200 (OK)           |
-| Payload   | section retrieved    |
-
-
-```json
-{
-    "section": {
-        "id":         2,
-        "name":       "LSDi",
-        "buildingID": 4
-   }
-}
-```
-
-
-### **GET**  `/sections`
-#### Retrieve all the sections
-This operation retrieves all the existing sections from the Semantic Server.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/sections`**
- * HTTP Method: **GET**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-|  | |
-
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | Array of the sections retrieved |
-
+| Payload   | physical space retrieved    |
 
 ```json
 {
-    "sections": [
-        {
-            "id":         2,
-            "name":       "LSDi",
-            "buildingID": 4
-        },
-        {
-            "id":         3,
-            "name":       "LAWS",
-            "buildingID": 4
-        }
-    ]
+  "name": "UFMA",
+  "description": "Univerdidade Federal do Maranhão",
+  "holder": {
+    "id": 8
+  },
+  "children": [
+    {
+      "name": "LSDi",
+      "description": "Laboratório de Sistemas Distribuídos Inteligentes",
+      "holder": {
+        "id": 14
+      },
+      "children": []
+    }
+  ]
 }
 ```
-
-## Buildings
-
-### **POST**  `/buidings`
-#### Register a new buiding
-This operation inserts a new buiding, expressed in the JSON format, into the Semantic Server.
-**Note that all buiding fields are required**.
-If everything goes well, Semantic Server returns a response with HTTP status code 201 (CREATED), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/buidings`**
- * HTTP Method: **POST**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-| body | buiding JSON |
-
-Example:
-
-```json
-{
-    "buiding": {
-        "name":   "CCET Graduation building"
-   }
-}
-```
-
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 201 (CREATED)      |
-| Payload   | buiding created       |
-
-
-```json
-{
-    "buiding": {
-        "id":   4,
-        "name": "CCET Graduation building"
-   }
-}
-```
-
-### **PUT**  `/buidings/{id}`
-#### Update an existing buiding
-This operation update an existing buiding with id equals `{id}`. The new values should be expressed in the JSON format.
-**Note that all buiding fields are required**.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/buidings/{id}`**
- * HTTP Method: **PUT**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-| body | buiding JSON |
-|{id}  | The id of the buiding|
-
-Example:
-
-```json
-{
-    "buiding": {
-        "name": "CCET Graduation Building"
-   }
-}
-```
-
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | buiding updated      |
-
-
-```json
-{
-    "buiding": {
-        "id":   4,
-        "name": "CCET Graduation Building"
-   }
-}
-```
-
-### **DELETE**  `/buidings/{id}`
-#### Delete an existing buiding
-This operation deletes an existing buiding with id equals `{id}` from the Semantic Server.
-**Note that all buiding fields are required**.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/buidings/{id}`**
- * HTTP Method: **DELETE**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-| body | Empty           |
-|{id}  | The id of the buiding|
-
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | buiding deleted      |
-
-
-```json
-{
-    "buiding": {
-        "id":   4,
-        "name": "CCET Graduation Building"
-   }
-}
-```
-
-
-### **GET**  `/buidings/{id}`
-#### Retrieve an existing buiding
-This operation retrieves an existing buiding with id equals `{id}`, from the Semantic Server.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/buidings/{id}`**
- * HTTP Method: **GET**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-| body | buiding JSON |
-|{id}  | The id of the buiding|
-
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | buiding retrieved    |
-
-
-```json
-{
-    "buiding": {
-        "id":   4,
-        "name": "CCET Graduation Building"
-   }
-}
-```
-
-
-### **GET**  `/buidings`
-#### Retrieve all the buidings
-This operation retrieves all the existing buidings from the Semantic Server.
-If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
-
- * Full URL: `http://localhost:8080/api` **`/buidings`**
- * HTTP Method: **GET**
-
-##### Input Parameters:
-
-| Name | Payload         |
-|------|-----------------|
-|  | |
-
-
-##### Output Parameters:
-| Name      | Value              |
-|-----------|--------------------|
-| HTTP Code | 200 (OK)           |
-| Payload   | Array of the buidings retrieved |
-
-
-```json
-{
-    "buidings": [
-        {
-            "id":   4,
-            "name": "CCET Graduation Building"
-        },
-        {
-            "id":   5,
-            "name": "CCET"
-        }
-    ]
-}
-```
-
