@@ -1,4 +1,7 @@
 package br.ufma.lsdi.semanticserver.repository;
 
-public interface RoleRepository {
+import br.ufma.lsdi.semanticserver.domain.Role;
+import org.springframework.data.repository.CrudRepository;
+
+public interface RoleRepository extends CrudRepository<Role, String> {
 }

@@ -45,7 +45,7 @@ public class PersonController {
 	public ResponseEntity<Person> createThing(@Valid @RequestBody Person person, HttpServletResponse response) {
 		Holder savedHolder = holderRepository.save(new Holder());
 
-		person.setHolderId(savedHolder);
+		person.setHolder(savedHolder);
 		Person savedPerson = personRepository.save(person);
 
 		buildResponseHeader(response, savedPerson.getEmail());
