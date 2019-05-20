@@ -45,11 +45,11 @@ CREATE TABLE IF NOT EXISTS role(
 );
 
 CREATE TABLE IF NOT EXISTS person_role(
-    fk_holder_id    BIGINT,
-    fk_role_name    VARCHAR(255),
+    fk_person_email     VARCHAR(255),
+    fk_role_name        VARCHAR(255),
 
-    PRIMARY KEY (fk_holder_id, fk_role_name),
-    FOREIGN KEY (fk_holder_id) REFERENCES person(fk_holder_id)
+    PRIMARY KEY (fk_person_email, fk_role_name),
+    FOREIGN KEY (fk_person_email) REFERENCES person(email)
         ON DELETE CASCADE,
     FOREIGN KEY (fk_role_name) REFERENCES role(role_name)
         ON DELETE CASCADE
