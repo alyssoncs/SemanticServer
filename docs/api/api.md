@@ -9,9 +9,7 @@ There are seven resources that the Semantic Server keeps, they are:
 * [Mhubs](#Mhubs)
 * [Users](#Users)
 * [Roles](#Roles)
-* [Rooms](#Rooms)
-* [Sections](#Sections)
-* [Buildings](#Buildings)
+* [Physical Spaces](#Physical Spaces)
 
 Rooms belog to Sections that belongs to Buildings. Mhubs and Things belogs to either Users or Rooms. and Users might have Roles.
 
