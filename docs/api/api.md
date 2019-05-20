@@ -9,7 +9,7 @@ There are seven resources that the Semantic Server keeps, they are:
 * [Mhubs](#Mhubs)
 * [Users](#Users)
 * [Roles](#Roles)
-* [Physical Spaces](#Physical Spaces)
+* [Physical Spaces](#Physical-Spaces)
 
 Rooms belog to Sections that belongs to Buildings. Mhubs and Things belogs to either Users or Rooms. and Users might have Roles.
 
@@ -904,7 +904,7 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ]
 ```
 
-## Physical Spaces
+## Physical-Spaces
 
 ### **POST**  `/physical_spaces`
 #### Register a new physical space
