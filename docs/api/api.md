@@ -7,7 +7,7 @@ The Semantic Server is a web service that maps the relationships between wireles
 There are seven resources that the Semantic Server keeps, they are:
 * [Things](#Things)
 * [Mhubs](#Mhubs)
-* [Users](#Users)
+* [Persons](#Persons)
 * [Roles](#Roles)
 * [Physical Spaces](#Physical-Spaces)
 
