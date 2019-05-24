@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS holder(
 CREATE TABLE IF NOT EXISTS device(
     device_uuid     VARCHAR(40),
     fk_holder_id    BIGINT,
-    name            VARCHAR(16) NOT NULL,
+    name            VARCHAR(20) NOT NULL,
     description     VARCHAR(255),
 
     PRIMARY KEY (device_uuid),
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS mhub(
 CREATE TABLE IF NOT EXISTS person(
     email           VARCHAR(255),
     fk_holder_id    BIGINT UNIQUE NOT NULL ,
-    short_name      VARCHAR(16) NOT NULL,
+    short_name      VARCHAR(20) NOT NULL,
     full_name       VARCHAR(255),
 
     PRIMARY KEY (email),
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS person_role(
 CREATE TABLE IF NOT EXISTS physical_space(
     fk_holder_id                    BIGINT,
     fk_parent_physical_space_id     BIGINT,
-    name                            VARCHAR(15) NOT NULL,
+    name                            VARCHAR(20) NOT NULL,
     description                     VARCHAR(255),
 
     PRIMARY KEY (fk_holder_id),

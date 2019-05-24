@@ -34,6 +34,12 @@ public class PhysicalSpaceController {
 		return ResponseEntity.ok(physicalSpacesList);
 	}
 
+	@GetMapping("/roots")
+	public ResponseEntity<Iterable<PhysicalSpace>> getRootPhysicalSpaces() {
+		Iterable<PhysicalSpace> rootPhysicalSpacesList = physicalSpaceRepository.findPhysicalSpacesByParent(null);
+		return ResponseEntity.ok(rootPhysicalSpacesList);
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<PhysicalSpace> getPhysicalSpaceById(@PathVariable("id") Long HolderId) {
 		PhysicalSpace physicalSpace = physicalSpaceService.getPhysicalSpaceByHolderId(HolderId);

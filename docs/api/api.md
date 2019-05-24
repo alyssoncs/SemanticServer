@@ -1129,6 +1129,133 @@ If everything goes well, Semantic Server returns a response with HTTP status cod
 ]
 ```
 
+### **GET**  `/physical_spaces/roots`
+#### Retrieve all the root physical_spaces
+This operation retrieves all the existing physical_spaces that don't have a parent from the Semantic Server.
+If everything goes well, Semantic Server returns a response with HTTP status code 200 (OK), otherwise it returns a response with HTTP status code 400 (BAD REQUEST).
+
+ * Full URL: `http://localhost:8080/api` **`/physical_spaces`**
+ * HTTP Method: **GET**
+
+##### Input Parameters:
+
+| Name | Payload         |
+|------|-----------------|
+|  | |
+
+
+##### Output Parameters:
+| Name      | Value              |
+|-----------|--------------------|
+| HTTP Code | 200 (OK)           |
+| Payload   | Array of the physical_spaces retrieved |
+
+```json
+[
+  {
+    "name": "UFMA",
+    "description": "Universidade Federal do Maranhão",
+    "holder": {
+      "id": 1
+    },
+    "children": [
+      {
+        "name": "CCET",
+        "description": "Centro de Ciências Exatas e Tecnologias",
+        "holder": {
+          "id": 2
+        },
+        "children": [
+          {
+            "name": "Prédio da Pós CCET",
+            "description": "Prédio Anexo da Pós-graduaçao do CCET",
+            "holder": {
+              "id": 4
+            },
+            "children": [
+              {
+                "name": "LSDi",
+                "description": "Laboratório de Sistemas Distribuídos Inteligentes",
+                "holder": {
+                  "id": 5
+                },
+                "children": [
+                  {
+                    "name": "Sala de Leitura",
+                    "description": "Sala de leitura do LSDi",
+                    "holder": {
+                      "id": 8
+                    },
+                    "children": []
+                  },
+                  {
+                    "name": "Sala dos professores",
+                    "description": "Sala dos professores do LSDi",
+                    "holder": {
+                      "id": 9
+                    },
+                    "children": []
+                  },
+                  {
+                    "name": "Salas das ETs",
+                    "description": "Sala das estações de trabalho do LSDi",
+                    "holder": {
+                      "id": 10
+                    },
+                    "children": [
+                      {
+                        "name": "Sala do Servidor",
+                        "description": "Sala do servidor do LSDi",
+                        "holder": {
+                          "id": 11
+                        },
+                        "children": []
+                      },
+                      {
+                        "name": "Almoxarifado",
+                        "description": "Almoxarifado do LSDi",
+                        "holder": {
+                          "id": 12
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "LAWS",
+                "description": "Laboratory of Advanced Web Systems",
+                "holder": {
+                  "id": 6
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "NCA",
+            "description": "Npucleo de Computação Aplicada",
+            "holder": {
+              "id": 7
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Ceuma",
+    "description": "Centro universitario do maranhão",
+    "holder": {
+      "id": 13
+    },
+    "children": []
+  }
+]
+```
+
 ### **GET**  `/physical_spaces/{id}/things` **not implemented**
 #### Retrieve the things belonging to an existing physical space
 This operation retrieves the things that belong to an existing user with id equals `{id}`, from the Semantic Server.
