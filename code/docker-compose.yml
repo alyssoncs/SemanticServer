@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: "123456"
       POSTGRES_DB: semantic-server
     volumes:
-      - /home/alysson/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data
+      - ~/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data
 
   semantic-server:
     build: ./semanticserver
