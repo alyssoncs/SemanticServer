@@ -1,10 +1,13 @@
 package br.ufma.lsdi.semanticserver.controller;
 
-import br.ufma.lsdi.semanticserver.domain.Holder;
-import br.ufma.lsdi.semanticserver.domain.PhysicalSpace;
+import br.ufma.lsdi.semanticserver.domain.*;
 import br.ufma.lsdi.semanticserver.repository.HolderRepository;
+import br.ufma.lsdi.semanticserver.repository.MhubRepository;
 import br.ufma.lsdi.semanticserver.repository.PhysicalSpaceRepository;
+import br.ufma.lsdi.semanticserver.repository.ThingRepository;
+import br.ufma.lsdi.semanticserver.service.MhubService;
 import br.ufma.lsdi.semanticserver.service.PhysicalSpaceService;
+import br.ufma.lsdi.semanticserver.service.ThingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +29,19 @@ public class PhysicalSpaceController {
 	HolderRepository holderRepository;
 
 	@Autowired
+	ThingRepository thingRepository;
+
+	@Autowired
+	MhubRepository mhubRepository;
+
+	@Autowired
 	PhysicalSpaceService physicalSpaceService;
+
+	@Autowired
+	ThingService thingService;
+
+	@Autowired
+	MhubService mhubService;
 
 	@GetMapping
 	public ResponseEntity<Iterable<PhysicalSpace>> getAllPhysicalSpaces() {
@@ -46,6 +61,30 @@ public class PhysicalSpaceController {
 
 		if (physicalSpace != null)
 			return ResponseEntity.ok(physicalSpace);
+
+		return ResponseEntity.notFound().build();
+	}
+
+	@GetMapping("/{id}/things")
+	public ResponseEntity<Iterable<Device>> getPhysicalSpaceThings(@PathVariable("id") Long HolderId) {
+		PhysicalSpace physicalSpace = physicalSpaceService.getPhysicalSpaceByHolderId(HolderId);
+
+		if (physicalSpace != null) {
+			Iterable<Thing> things = thingRepository.findAllByDevice_Holder(physicalSpace.getHolder());
+			return ResponseEntity.ok(thingService.toDeviceList(things));
+		}
+
+		return ResponseEntity.notFound().build();
+	}
+
+	@GetMapping("/{id}/mhubs")
+	public ResponseEntity<Iterable<Device>> getPhysicalSpaceMhubs(@PathVariable("id") Long HolderId) {
+		PhysicalSpace physicalSpace = physicalSpaceService.getPhysicalSpaceByHolderId(HolderId);
+
+		if (physicalSpace != null) {
+			Iterable<Mhub> mhubs = mhubRepository.findAllByDevice_Holder(physicalSpace.getHolder());
+			return ResponseEntity.ok(mhubService.toDeviceList(mhubs));
+		}
 
 		return ResponseEntity.notFound().build();
 	}
