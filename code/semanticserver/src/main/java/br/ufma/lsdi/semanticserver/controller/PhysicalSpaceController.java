@@ -77,12 +77,36 @@ public class PhysicalSpaceController {
 		return ResponseEntity.notFound().build();
 	}
 
+	@GetMapping("/{id}/descendant/things")
+	public ResponseEntity<Iterable<Device>> getPhysicalSpaceDescendantThings(@PathVariable("id") Long HolderId) {
+		PhysicalSpace physicalSpace = physicalSpaceService.getPhysicalSpaceByHolderId(HolderId);
+
+		if (physicalSpace != null) {
+			Iterable<Thing> things = physicalSpaceService.getPhysicalSpaceDescendantThings(physicalSpace);
+			return ResponseEntity.ok(thingService.toDeviceList(things));
+		}
+
+		return ResponseEntity.notFound().build();
+	}
+
 	@GetMapping("/{id}/mhubs")
 	public ResponseEntity<Iterable<Device>> getPhysicalSpaceMhubs(@PathVariable("id") Long HolderId) {
 		PhysicalSpace physicalSpace = physicalSpaceService.getPhysicalSpaceByHolderId(HolderId);
 
 		if (physicalSpace != null) {
 			Iterable<Mhub> mhubs = mhubRepository.findAllByDevice_Holder(physicalSpace.getHolder());
+			return ResponseEntity.ok(mhubService.toDeviceList(mhubs));
+		}
+
+		return ResponseEntity.notFound().build();
+	}
+
+	@GetMapping("/{id}/descendant/mhubs")
+	public ResponseEntity<Iterable<Device>> getPhysicalSpaceDescendantMhubs(@PathVariable("id") Long HolderId) {
+		PhysicalSpace physicalSpace = physicalSpaceService.getPhysicalSpaceByHolderId(HolderId);
+
+		if (physicalSpace != null) {
+			Iterable<Mhub> mhubs = physicalSpaceService.getPhysicalSpaceDescendantMhubs(physicalSpace);
 			return ResponseEntity.ok(mhubService.toDeviceList(mhubs));
 		}
 
