@@ -6,6 +6,7 @@ entity {bgcolor: "#ececfc"}
         +fk_holder_id {label: "bigint <fk>"}
         name {label: "varchar(16) NOT NULL"}
         description {label: "varchar(255)"}
+        mac_address {label: "varchar(17)"}
 
 [thing]
         *+fk_device_uuid {label: "uuid <pk> <fk>"}
