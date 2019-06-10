@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS device(
     fk_holder_id    BIGINT,
     name            VARCHAR(20) NOT NULL,
     description     VARCHAR(255),
+    mac_address     VARCHAR(17),
 
     PRIMARY KEY (device_uuid),
     FOREIGN KEY (fk_holder_id) REFERENCES holder(holder_id)
