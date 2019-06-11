@@ -29,6 +29,9 @@ public class Device implements Serializable {
 	@NotNull
 	private String name;
 
+	@Column(name = "mac_address")
+	private String macAddress;
+
 	//@OneToOne(mappedBy = "device")
 	//private Thing thing;
 

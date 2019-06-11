@@ -5,6 +5,7 @@ import br.ufma.lsdi.semanticserver.domain.Thing;
 import br.ufma.lsdi.semanticserver.repository.DeviceRepository;
 import br.ufma.lsdi.semanticserver.repository.ThingRepository;
 import br.ufma.lsdi.semanticserver.service.ThingService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ import java.util.UUID;
 public class ThingController {
 	@Autowired
 	ThingRepository thingRepository;
+
+	@Autowired
+	DeviceRepository deviceRepository;
 
 	@Autowired
 	ThingService thingService;
@@ -52,6 +56,20 @@ public class ThingController {
 		buildResponseHeader(response, savedThing.getId());
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(savedThing.getDevice());
+	}
+
+	@PutMapping("/{uuid}")
+	public ResponseEntity<Device> updateThing(@PathVariable String uuid, @Valid @RequestBody Device mhub) {
+		Optional<Thing> savedThing = thingRepository.findById(uuid);
+
+		if (savedThing.isPresent()) {
+			BeanUtils.copyProperties(mhub, savedThing.get().getDevice(), "uuid");
+			deviceRepository.save(savedThing.get().getDevice());
+
+			return ResponseEntity.status(HttpStatus.CREATED).body(savedThing.get().getDevice());
+		}
+
+		return ResponseEntity.notFound().build();
 	}
 
 	@DeleteMapping("/{uuid}")
